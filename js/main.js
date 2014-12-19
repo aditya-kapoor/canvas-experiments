@@ -43,10 +43,10 @@ var CanvasEventTracker = {
   initialize: function($canvas_element, $area_div){
     this.events          = [];
     this.$canvas_element = $canvas_element;
-    this.area = 0;
     this.$area_div = $area_div
   },
   calculateArea: function() {
+    area = 0
     for(i=0;i<this.events.length;++i){
       if(i == this.events.length - 1){
         var looping_pair = [this.events[i], this.events[0]]
@@ -54,10 +54,10 @@ var CanvasEventTracker = {
         var looping_pair = [this.events[i], this.events[i+1]]
       }
       exp        = 0.5*((looping_pair[0].X * looping_pair[1].Y) - (looping_pair[1].X * looping_pair[0].Y))
-      this.area += exp;
+      area += exp;
     }
-    console.log(Math.abs(this.area))
-    this.$area_div.html(Math.abs(this.area))
+    console.log(Math.abs(area))
+    this.$area_div.html(Math.abs(area))
   }
 }
 
