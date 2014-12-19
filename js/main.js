@@ -5,7 +5,7 @@ var Canvas = {
     this.canvas_context = this.$canvas[0].getContext('2d');
     this.canvas_context.fillStyle = "#123";
     this.canvas_context.beginPath();
-    CanvasEventTracker.initialize(this.$canvas);
+    CanvasEventTracker.initialize(this.$canvas, $('.area'));
   },
   bindEvents: function(){
     _this = this;
@@ -40,10 +40,11 @@ var Canvas = {
 }
 
 var CanvasEventTracker = {
-  initialize: function($canvas_element){
+  initialize: function($canvas_element, $area_div){
     this.events          = [];
     this.$canvas_element = $canvas_element;
-    this.area = 0
+    this.area = 0;
+    this.$area_div = $area_div
   },
   calculateArea: function() {
     for(i=0;i<this.events.length;++i){
@@ -56,6 +57,7 @@ var CanvasEventTracker = {
       this.area += Math.abs(exp)*0.5;
     }
     console.log(this.area)
+    this.$area_div.html(this.area)
   }
 }
 
