@@ -1,3 +1,29 @@
+CanvasRenderingContext2D.prototype.clear = 
+  CanvasRenderingContext2D.prototype.clear || function (preserveTransform) {
+    if (preserveTransform) {
+      this.save();
+      this.setTransform(1, 0, 0, 1, 0, 0);
+    }
+
+    this.clearRect(0, 0, this.canvas.width, this.canvas.height);
+
+    if (preserveTransform) {
+      this.restore();
+    }           
+};
+
+
+
+
+
+
+
+
+
+
+
+
+
 var Canvas = {
   initialize: function(canvas_class, table_class){
     this.$coordinate_table = $(table_class)
@@ -27,6 +53,8 @@ var Canvas = {
   handleEvent: function(canvas_event) {
     this.canvas_context.lineTo(canvas_event.X, canvas_event.Y);
     // this.canvas_context.moveTo(canvas_event.X, canvas_event.Y);
+    // Canvas.canvas_context.clear(true)
+    Canvas.canvas_context.clear()
     this.canvas_context.fillStyle = "rgba(0, 0, 0, 0.5)";
     this.canvas_context.save();
     this.canvas_context.stroke();
@@ -93,6 +121,7 @@ $(document).ready(function(){
 $(function() {
     var canvas = document.getElementById('canvas'),
             context = canvas.getContext('2d');
+            context.lineCap = 'round';
 
     // resize the canvas to fill browser window dynamically
     window.addEventListener('resize', resizeCanvas, false);
