@@ -62,7 +62,7 @@ var CanvasEventTracker = {
       area += exp;
     }
     console.log(Math.abs(area))
-    this.$area_div.html(Math.abs(area))
+    this.$area_div.html("Area - " + Math.abs(area))
   }
 }
 
