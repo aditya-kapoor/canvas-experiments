@@ -17,6 +17,9 @@ var Canvas = {
       _this.handleEvent(canvas_event);
       CanvasEventTracker.events.push(canvas_event)
       _this.updateTable(canvas_event)
+      if(CanvasEventTracker.events.length >= 3) {
+        CanvasEventTracker.calculateArea();
+      }
     })
   },
   handleEvent: function(canvas_event) {
@@ -40,6 +43,19 @@ var CanvasEventTracker = {
   initialize: function($canvas_element){
     this.events          = [];
     this.$canvas_element = $canvas_element;
+    this.area = 0
+  },
+  calculateArea: function() {
+    for(i=0;i<this.events.length;++i){
+      if(i == this.events.length - 1){
+        var looping_pair = [this.events[i], this.events[0]]
+      } else {
+        var looping_pair = [this.events[i], this.events[i+1]]
+      }
+      exp = (looping_pair[0].X * looping_pair[1].Y) - (looping_pair[1].X * looping_pair[0].Y)
+      this.area += Math.abs(exp)*0.5;
+    }
+    console.log(this.area)
   }
 }
 
