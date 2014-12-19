@@ -1,5 +1,6 @@
 var Canvas = {
-  initialize: function(canvas_class){
+  initialize: function(canvas_class, table_class){
+    this.$coordinate_table = $(table_class)
     this.$canvas = $(canvas_class);
     this.canvas_context = this.$canvas[0].getContext('2d');
     this.canvas_context.fillStyle = "#123";
@@ -14,6 +15,8 @@ var Canvas = {
       var eventY = event.clientY - offset.top;
       var canvas_event = new CanvasEvent('left', eventX, eventY);
       _this.handleEvent(canvas_event);
+      CanvasEventTracker.events.push(canvas_event)
+      _this.updateTable(canvas_event)
     })
   },
   handleEvent: function(canvas_event) {
@@ -21,7 +24,15 @@ var Canvas = {
     // this.canvas_context.moveTo(canvas_event.X, canvas_event.Y);
     this.canvas_context.stroke();
     this.canvas_context.fill();
-    CanvasEventTracker.events.push(canvas_event)
+  },
+  updateTable: function(canvas_event) {
+    this.$coordinate_table.append(
+      $('<tr />').append(
+        $('<td />').text(canvas_event.X)
+      ).append(
+        $('<td />').text(canvas_event.Y)
+      )
+    )
   }
 }
 
@@ -39,6 +50,6 @@ var CanvasEvent = function(event_type, x_coordinate, y_coordinate){
 }
 
 $(document).ready(function(){
-  Canvas.initialize('.canvas');
+  Canvas.initialize('.canvas', '.coordinates_table');
   Canvas.bindEvents();
 })
