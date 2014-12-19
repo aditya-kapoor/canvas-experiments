@@ -4,7 +4,6 @@ var Canvas = {
     this.$canvas = $(canvas_class);
     this.canvas_context = this.$canvas[0].getContext('2d');
     this.canvas_context.beginPath();
-    this.canvas_context.fillStyle = "#123";
     CanvasEventTracker.initialize(this.$canvas, $('.area'));
   },
   bindEvents: function(){
@@ -20,11 +19,13 @@ var Canvas = {
       if(CanvasEventTracker.events.length >= 3) {
         CanvasEventTracker.calculateArea();
       }
-    })
+    });
   },
   handleEvent: function(canvas_event) {
     this.canvas_context.lineTo(canvas_event.X, canvas_event.Y);
     // this.canvas_context.moveTo(canvas_event.X, canvas_event.Y);
+    this.canvas_context.fillStyle = "rgba(0, 0, 0, 0.5)";
+    this.canvas_context.save();
     this.canvas_context.stroke();
     this.canvas_context.fill();
   },
@@ -70,4 +71,18 @@ var CanvasEvent = function(event_type, x_coordinate, y_coordinate){
 $(document).ready(function(){
   Canvas.initialize('.canvas', '.coordinates_table');
   Canvas.bindEvents();
+
+  // Monkey patched code...Improve this...We still don't know
+  // what it has done
+  var canvas = $('.canvas')[0],
+    context = canvas.getContext('2d');
+
+    // resize the canvas to fill browser window dynamically
+    window.addEventListener('resize', resizeCanvas, false);
+
+  function resizeCanvas() {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+  }
+  resizeCanvas();
 })

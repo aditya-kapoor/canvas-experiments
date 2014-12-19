@@ -1,20 +1,27 @@
 <html>
   <head>
     <title>Canvas Demo</title>
+    <link rel="stylesheet" type="text/css" href="./styles/main.css">
     <script type="text/javascript" src="./js/jquery.js"></script>
     <script type="text/javascript" src="./js/main.js"></script>
   </head>
   <body>
-    <canvas class="canvas" style="border:1px solid;width:100%;background: url('imgs/Retail-Site-Plan-4-5-20101.jpg');" >
-    </canvas>
-    <div class="coordinates" style="float:right;">
-      <table class="coordinates_table" style="border:1px solid black;width:100px">
-        <tr>
-          <th>X</th>
-          <th>Y</th>
-        </tr>
-      </table>
+    <div class="canvas_container">
+      <div class="canvas_area">
+        <canvas class="canvas" style="border:1px solid;width:100%;background: url('imgs/Retail-Site-Plan-4-5-20101.jpg');" >
+        </canvas>
+      </div>
+      <div class="canvas_details" >
+        <div class="area"></div>
+        <div class="coordinates" >
+          <table class="coordinates_table">
+            <tr>
+              <th>X</th>
+              <th>Y</th>
+            </tr>
+          </table>
+        </div>
+      </div>
     </div>
-    <div class="area"></div>
   </body>
 </html>
