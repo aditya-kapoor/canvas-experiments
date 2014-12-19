@@ -53,11 +53,11 @@ var CanvasEventTracker = {
       } else {
         var looping_pair = [this.events[i], this.events[i+1]]
       }
-      exp = (looping_pair[0].X * looping_pair[1].Y) - (looping_pair[1].X * looping_pair[0].Y)
-      this.area += Math.abs(exp)*0.5;
+      exp        = 0.5*((looping_pair[0].X * looping_pair[1].Y) - (looping_pair[1].X * looping_pair[0].Y))
+      this.area += exp;
     }
-    console.log(this.area)
-    this.$area_div.html(this.area)
+    console.log(Math.abs(this.area))
+    this.$area_div.html(Math.abs(this.area))
   }
 }
 
