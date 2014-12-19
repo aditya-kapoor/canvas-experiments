@@ -3,8 +3,8 @@ var Canvas = {
     this.$coordinate_table = $(table_class)
     this.$canvas = $(canvas_class);
     this.canvas_context = this.$canvas[0].getContext('2d');
-    this.canvas_context.fillStyle = "#123";
     this.canvas_context.beginPath();
+    this.canvas_context.fillStyle = "#123";
     CanvasEventTracker.initialize(this.$canvas, $('.area'));
   },
   bindEvents: function(){
