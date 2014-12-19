@@ -1,0 +1,10 @@
+.canvas_container { display: table; width: 100%; font-family: arial, helvetica, serif;  color: #000}
+.canvas_area { display: table-cell; vertical-align: top;}
+.canvas_details { display: table-cell; width:200px; vertical-align: top; padding-left:10px;}
+.canvas_details .area { display:block; margin-bottom: 10px; border: solid 1px #dddddd; padding: 10px; text-align: center; background: #eee;} 
+.coordinates_table { width: 100%; border-collapse: collapse; border: solid 1px #ddd;}
+.coordinates_table th { background:#eee;}
+.coordinates_table th,
+.coordinates_table td { text-align: center; border: solid 1px #ddd;}
+.canvas-image-map { border:1px solid;width:100%;background: url('../imgs/Retail-Site-Plan-4-5-20101.jpg'); }
+.canvas-image-map:hover { cursor: crosshair; }
